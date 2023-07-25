@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepFake Detection</title>
+    <link rel="stylesheet" href="../static/css/LandingPage.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">
+            DEEPFAKE DETECTION
+        </h1>
+        <p id="content"></p>
+        <button type="submit" class="getStarted">
+            <a href="/index">Get Started</a>
+            
+        </button>
+    </div>
+    <script>
+        const text = "Welcome to our deepfake detection website. Our advanced AI algorithms analyze videos and images to detect any signs of manipulation or tampering.Our mission is to provide a reliable and efficient solution to combat the spread of deepfakes, ensuring the integrity of digital media. With our platform, you can upload videos or images for analysis, and we will provide a detailed report highlighting any potential deepfake elements";
+    
+        const contentElement = document.getElementById("content");
+        let index = 0;
+    
+        function displayText() {
+          if (index < text.length) {
+            contentElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(displayText, 15); // Adjust the delay (in milliseconds) between each letter here
+          }
+        }
+    
+        displayText();
+      </script>
+</body>
+
+</html>

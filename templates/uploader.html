@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepFake Detection</title>
+    <link rel="stylesheet" href="../static/css/uploadPage.css">
+    <script>    
+        window.onload = function() {
+        const scrollBar = document.getElementById('scroll-bar');
+        const scrollThumb = document.getElementById('scroll-bar-thumb');
+        const scrollValue = document.getElementById('scroll-value');
+    
+        scrollBar.addEventListener('click', function(event) {
+        const clickX = event.clientX - scrollBar.getBoundingClientRect().left;
+        const scrollPercentage = clickX / scrollBar.offsetWidth;
+    
+        let scrollValueText;
+        if (scrollPercentage < 0.15) {
+          scrollValueText = 10;
+        } else if (scrollPercentage < 0.35) {
+          scrollValueText = 20;
+        } else if (scrollPercentage < 0.55) {
+          scrollValueText = 40;
+        } else if (scrollPercentage < 0.75) {
+          scrollValueText = 60;
+        } else if (scrollPercentage < 0.95) {
+          scrollValueText = 80;
+        } else {
+          scrollValueText = 100;
+        }
+    
+        scrollThumb.style.width = scrollPercentage * 100 + '%';
+        scrollValue.textContent = scrollValueText;
+        // sessionStorage.setItem('scrollValue', scrollValueText);
+        const scrollValueInput = document.getElementById('scrollValueInput');
+        scrollValueInput.value = scrollValueText;
+    
+      });
+      };
+        function handleFileSelect(event) {
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          console.log(" I am here ")
+          reader.onload = function (e) {
+            const videoUrl = e.target.result;
+            localStorage.setItem('uploadedVideo', videoUrl);
+            window.location.href = '/upload';
+          };
+    
+          reader.readAsDataURL(file);
+        }
+      </script>
+      <style>
+      
+        header {
+          padding: 20px;
+          color: #fff;
+          display: flex;
+          align-items: center;
+        }
+
+        header:hover{
+            color: aquamarine;
+        }
+      
+        header h1 {
+          margin: 0;
+          flex-grow: 1;
+          text-align: center;
+        }
+      
+        header a {
+          color: white;
+          text-decoration: none;
+          font-size: 35px;
+          font-weight: bold;
+          margin-left: 20px;
+          text-size-adjust: 20px;
+        }
+      
+        header a:hover {
+          color: #00ffea;
+        }
+      
+        #upload-form {
+            position: absolute;
+            top: 15%;
+            left: 35%;
+          width: 300px;
+          margin: 0 auto;
+          margin-top: 50px;
+          border: 2px solid #a9a7a7;
+          padding: 50px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* #upload-form:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: #555;
+        } */
+        
+        .no-background-image {
+          background-color: transparent;
+        }
+        #upload-form input[type="file"] {
+          margin-bottom: 10px;
+          background-color: white;
+        }
+
+        #scroll-bar-container {
+          width: 300px;
+          margin: 50px auto;
+          position: absolute;
+          top: 50%;
+          left: 38%;
+        }
+    
+        #scroll-bar {
+          width: 100%;
+          height: 20px;
+          background-color: #f1f1f1;
+          position: relative;
+          cursor: pointer;
+        }
+    
+        #scroll-bar-thumb {
+          width: 0;
+          height: 100%;
+          background-color: #007bff;
+          position: absolute;
+        }
+    
+        #scroll-value {
+          margin-top: 10px;
+          text-align: center;
+          font-size: 18px;
+          color: white;
+        }
+    
+      </style>
+</head>
+<body>
+    <header>
+        <a href="/upload">Home</a>
+      </header>
+    <div class="container" style="justify-content: center;">
+        <!-- <h1 class="heading">
+            UPLOAD
+        </h1> -->
+        <!-- <p id="content"></p> -->
+        <!-- <button type="submit" class="Upload">
+            <a href="/upload">Get Started</a>
+        </button> -->
+    </div>
+    <div id="upload-form" class="no-background-image">
+        <h2 style="text-align: center;color: white;font-size: 30px;">Upload Video</h2>
+        <form method="post" enctype="multipart/form-data" action="/upload">
+          <input type="file" name="file">
+          <input type="text" name="scrollValue" value="{{ scrollValueText }}" style="display: none;" id="scrollValueInput">
+          <input type="submit" value="Upload" class="getStarted">
+      </form>
+      </div>
+      <!-- <button type="submit" class="getStarted">
+        <a href="/upload">Upload</a>
+    </button> -->
+    
+      <div id="scroll-bar-container">
+        <div id="scroll-bar">
+          <div id="scroll-bar-track"></div>
+          <div id="scroll-bar-thumb"></div>
+          <div id="drag-handle"></div>
+        </div>
+        <div id="scroll-value">0</div>
+      </div>
+</body>
+
+</html>

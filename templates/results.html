@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uploaded Video</title>
+  <link rel="stylesheet" href="../static/css/uploadPage.css">
+  <script>
+    window.onload = function () {
+      const videoUrl = localStorage.getItem('uploadedVideo');
+
+      if (videoUrl) {
+        const videoElement = document.createElement('video');
+        videoElement.src = videoUrl;
+        videoElement.controls = true;
+
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.appendChild(videoElement);
+      } else {
+        console.error('No uploaded video found.');
+      }
+    };
+
+  </script>
+  <style>
+    body {
+        overflow-y: scroll !important;
+    }
+    .container {
+    background-repeat: repeat !important;
+    background-size: contain;
+}
+    header {
+          padding: 20px;
+          color: #fff;
+          display: flex;
+          align-items: center;
+        }
+
+        header:hover{
+            color: aquamarine;
+        }
+      
+        header h1 {
+          margin: 0;
+          flex-grow: 1;
+          text-align: center;
+        }
+      
+        header a {
+          color: white;
+          text-decoration: none;
+          font-size: 35px;
+          font-weight: bold;
+          margin-left: 20px;
+          text-size-adjust: 20px;
+        }
+      
+        header a:hover {
+          color: #00ffea;
+        }
+
+        .first{
+            position: absolute;
+            top: 5%;
+        }
+        .second{
+            position: absolute;
+            top: 45%;
+        }
+        .third{
+            position: absolute;
+            top: 80%;
+            left: 28%;
+        }
+
+        .first h1, .second h1, .third h1{
+            color: white;
+            position: relative;
+            /* bottom: 1%; */
+            left: 50%;
+        }
+
+        .third p{
+            position: relative;
+            left: 10%;
+        }
+
+  /* .centered-video {
+    max-width: 100%;
+    max-height: 100%;
+  } */
+
+    #video-container {
+      margin-left: 33%;
+      max-width: 35%;
+      max-height: 35%;
+      border: 2px solid #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #video-container video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .image-container,.face-container {
+      width: 1250px; /* Adjust the width to fit your desired size */
+      overflow-x: scroll;
+      white-space: nowrap;
+    }
+
+    .image-container img {
+      display: inline-block;
+      height: auto;
+      width: 300px; /* Adjust the width of each image as per your preference */
+      margin-right: 10px; /* Adjust the margin between the images */
+      margin-top: 30px;
+    }
+
+    .face-container img{
+      display: inline-block;
+      height: 150px;
+      width: 150px; /* Adjust the width of each image as per your preference */
+      margin-right: 10px; /* Adjust the margin between the images */
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/upload">Home</a>
+  </header>
+  <div class="container" style="justify-content: center;">
+        <!-- <h1 class="heading">
+            UPLOAD
+        </h1> -->
+        <!-- <p id="content"></p> -->
+        <!-- <button type="submit" class="Upload">
+            <a href="/upload">Get Started</a>
+        </button> -->
+    </div>
+  
+  <!-- <h1>Uploaded Video</h1> -->
+  <!-- <video controls>
+    <source src="{{ url_for('static', filename='videos/' + session['video_filename']) }}" type="video/mp4">
+  </video> -->
+    <!-- <div class="video-container" id="video-container"></div> -->
+    <div class="first">
+        <h1>Extracted Frames</h1>
+        <div class="image-container" style="margin-left: 10%">
+        {% for frame in frame_path %}
+        <img src= {{ frame }}>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="second">
+        <h1>Extracted Faces</h1>
+        <div class="face-container" style="margin-left: 10%">
+            {% for frame in face_path %}
+            <img src= {{ frame }}>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="third">
+    <h1 style="margin-top:60px">Results</h1>
+    <div style="margin-top: 20px;text-align: center;">
+    <p style="color: red;font-size: 25px;">PREDICTION = {{ prediction }}</p>
+    </div>
+  <div style="margin-top: 20px;text-align: center;">
+    <p style="color: red;font-size: 25px;">Confidence Percentage =  {{ accuracy }}</p>
+  </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uploaded Video</title>
+  <script>
+    window.onload = function () {
+      const videoUrl = localStorage.getItem('uploadedVideo');
+
+      if (videoUrl) {
+        const videoElement = document.createElement('video');
+        videoElement.src = videoUrl;
+        videoElement.controls = true;
+
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.appendChild(videoElement);
+      } else {
+        console.error('No uploaded video found.');
+      }
+    };
+
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    body h1{
+        text-align: center;
+    }
+    header {
+      background-color: #12a1df;
+      padding: 20px;
+      color: black;
+      display: flex;
+      align-items: center;
+    }
+  
+    header h1 {
+      margin: 0;
+    }
+    header a {
+      color: #141313;
+      text-decoration: none;
+      font-size: 30px;
+      font-weight: bold;
+      margin-left: 20px;
+      text-size-adjust: 20px;
+    }
+
+    header a:hover {
+      color: #f1f0ea;
+    }
+  
+
+  /* .centered-video {
+    max-width: 100%;
+    max-height: 100%;
+  } */
+
+    #video-container {
+      margin-left: 33%;
+      max-width: 35%;
+      max-height: 35%;
+      border: 2px solid #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #video-container video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .image-container,.face-container {
+      width: 1250px; /* Adjust the width to fit your desired size */
+      overflow-x: scroll;
+      white-space: nowrap;
+    }
+
+    .image-container img {
+      display: inline-block;
+      height: auto;
+      width: 300px; /* Adjust the width of each image as per your preference */
+      margin-right: 10px; /* Adjust the margin between the images */
+      margin-top: 30px;
+    }
+
+    .face-container img{
+      display: inline-block;
+      height: 150px;
+      width: 150px; /* Adjust the width of each image as per your preference */
+      margin-right: 10px; /* Adjust the margin between the images */
+      margin-top: 30px;
+    }
+
+    footer {
+      background-color: #333;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/index">Home</a>
+  </header>
+  
+  <!-- <h1>Uploaded Video</h1> -->
+  <!-- <video controls>
+    <source src="{{ url_for('static', filename='videos/' + session['video_filename']) }}" type="video/mp4">
+  </video> -->
+    <!-- <div class="video-container" id="video-container"></div> -->
+    <h1>Extracted Frames</h1>
+    <div class="image-container" style="margin-left: 10%">
+    {% for frame in frame_path %}
+    <img src= {{ frame }}>
+    {% endfor %}
+    </div>
+    <h1>Extracted Faces</h1>
+    <div class="face-container" style="margin-left: 10%">
+      {% for frame in face_path %}
+      <img src= {{ frame }}>
+      {% endfor %}
+  </div>
+  <h1>Results</h1>
+  <div style="margin-top: 30px;text-align: center;">
+    <p style="color: red;font-size: 25px;">{{ prediction }}</p>
+  </div>
+  <div style="margin-top: 30px;text-align: center;">
+    <p style="color: red;font-size: 25px;">Confidence Percentage =  {{ accuracy }}</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Deep Fake Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
