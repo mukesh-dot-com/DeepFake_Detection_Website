@@ -5,10 +5,11 @@ This projects aims in detection of video deepfakes using deep learning technique
 
 ## 2. System Architecture
 <p align="center">
-  <img src="" />
+  <img src="detailed.png"/>
 </p>
 
-## 3. Screenshots
+## 3. Website Implementation
+
 
 ## 5. Our Results
 
