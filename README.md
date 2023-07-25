@@ -15,13 +15,12 @@ This projects aims in detection of video deepfakes using deep learning technique
 <br><br><br><br>
 ![](/website_screenshots/result.png)
 
-## 4. Our Results
+## 4. Results
 
-| Model Name | No of videos | No of Frames | Accuracy |
-|------------|--------------|--------------|----------|
-|model_84_acc_10_frames_final_data.pt |6000 |10 |84.21461|
-|model_87_acc_20_frames_final_data.pt | 6000 |20 |87.79160|
-|model_89_acc_40_frames_final_data.pt | 6000| 40 |89.34681|
-|model_90_acc_60_frames_final_data.pt | 6000| 60 |90.59097 |
-|model_91_acc_80_frames_final_data.pt | 6000 | 80 | 91.49818 |
-|model_93_acc_100_frames_final_data.pt| 6000 | 100 | 93.58794|
+| No of videos | No of Frames | Accuracy |
+|--------------|--------------|----------|
+|6000 |10 |84.21461|
+|6000 |20 |87.79160|
+|6000| 40 |89.34681|
+|6000| 60 |90.59097 |
+
