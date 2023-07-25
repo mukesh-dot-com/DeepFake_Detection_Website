@@ -9,7 +9,16 @@ This projects aims in detection of video deepfakes using deep learning technique
 </p>
 
 ## 3. Website Implementation
-
+![](/screenshot/landing.png)
+<br><br><br><br>
+![](/screenshot/allevents.png)
+<br><br><br><br>
+![](/screenshot/registration.png)
+<br><br><br><br>
+![](/screenshot/signin.png)
+<br><br><br><br>
+![](/screenshot/footer.png)
+<br><br><br><br>
 
 ## 5. Our Results
 
